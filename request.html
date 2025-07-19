@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Request Quote</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
+    <link rel="stylesheet" href="style.css" />
+    <script type="text/javascript"
+        src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+    </script>
+    <script type="text/javascript">
+    (function(){
+      emailjs.init({
+        publicKey: "MRh7j0WE_TrJH-4Hz",
+      });
+    })();
+    </script>
+  </head>
+  <body>
+    <div id="overlay" class="overlay"></div>
+    <!-- Header -->
+    <header id="header">
+      <div class="container">
+        <div class="header-container flex align-center justify-between">
+          <a href="index.html" class="logo"
+            ><img
+              src="images/logo a2z.jpg"
+              class="company-logo"
+              alt="Company Logo"
+          /></a>
+
+          <div class="mobile-toggle" id="mobile-toggle">
+            <i>≡</i>
+          </div>
+
+          <nav class="nav-bar">
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="portfolio.html">Our Journey</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="request.html">Request Quote</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
+    
+    <!-- HERO SECTION -->
+     <section class="hero-contact" id="hero-contact">
+      <div class="container">
+        <h1>Request Quote</h1>
+        <p>Get in touch with our team for personalized support and information about our services.</p>
+      </div>
+     </section>
+
+    <!-- Main CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <!-- Single Wide Form Section -->
+            <div class="form-section-wide fade-in">
+                <h2>Request Your Quote</h2>
+                <p class="subtitle">Fill out the form below and our logistics experts will get back to you within 24 hours with a competitive quote.</p>
+                
+                <!-- 🔄 CHANGED: Updated form to use unified EmailJS template -->
+                <form class="freight-form-wide" id="unified-quote-form">
+                    <!-- 🔄 CHANGED: Added hidden field to identify form type -->
+                    <input type="hidden" name="form_type" value="Quote Request" />
+                    
+                    <div class="form-row-wide">
+                        <div class="form-group-request">
+                            <label for="name" class="form-label required">Full Name</label>
+                            <!-- 🔄 CHANGED: Updated name attribute for EmailJS -->
+                            <input type="text" id="name" name="from_name" class="form-control" placeholder="Your Full Name" required>
+                        </div>
+                        
+                        <div class="form-group-request">
+                            <label for="email" class="form-label required">Email Address</label>
+                            <!-- 🔄 CHANGED: Updated name attribute for EmailJS -->
+                            <input type="email" id="email" name="from_email" class="form-control" placeholder="Your Email Address" required>
+                        </div>
+
+                        <div class="form-group-request">
+                            <label for="phone" class="form-label required">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="Your Phone Number" oninput="this.value = this.value.replace(/[^0-9]/g, '')">
+                        </div>
+                    </div>
+
+                    <div class="form-group-request full-width">
+                        <div class="freight-checklist-wide">
+                            <h3>Select our Freight Services</h3>
+                            <div class="checkbox-group-wide">
+                                <label class="checkbox-item-wide">
+                                    <input type="checkbox" name="freight_type" value="air_freight">
+                                    <div class="checkbox-content">
+                                        <div class="checkbox-title"><b>Air Freight</b></div>
+                                        <div class="checkbox-desc">Fast delivery for time-sensitive shipments</div>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-item-wide">
+                                    <input type="checkbox" name="freight_type" value="sea_freight">
+                                    <div class="checkbox-content">
+                                        <div class="checkbox-title"><b>Sea Freight</b></div>
+                                        <div class="checkbox-desc">Cost-effective solution for large shipments</div>
+                                    </div>
+                                </label>
+                                
+                                <label class="checkbox-item-wide">
+                                    <input type="checkbox" name="freight_type" value="land_freight">
+                                    <div class="checkbox-content">
+                                        <div class="checkbox-title"><b>Land Freight</b></div>
+                                        <div class="checkbox-desc">Reliable ground transportation services</div>
+                                    </div>
+                                </label>
+
+                                <label class="checkbox-item-wide">
+                                    <input type="checkbox" name="freight_type" value="local_pickup_delivery">
+                                    <div class="checkbox-content">
+                                        <div class="checkbox-title"><b>Local Pickup / Delivery</b></div>
+                                        <div class="checkbox-desc">Cost-effective and reliable door to door services</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group-request full-width">
+                        <label for="message" class="form-label required">Project Details</label>
+                        <textarea id="message" name="message" class="form-control" placeholder="Please provide details about your shipment including origin, destination, cargo type, dimensions, weight, and timeline requirements..." required></textarea>
+                    </div>
+
+                    <div class="submit-container">
+                        <!-- 🔄 CHANGED: Updated button ID for unified handling -->
+                        <button type="submit" id="quote-submit-btn" class="submit-btn-wide">
+                            Get My Quote Now!
+                        </button>
+                    </div>
+                </form>
+
+                <!-- 🔄 CHANGED: Updated alert box ID to be unique -->
+                <div id="quote-alert-box" class="alert-box">
+                    <div class="alert-content">
+                        <h2>Quote Request Sent!</h2>
+                        <p>Thank you for choosing A2Z Time Critical. Our team will review your requirements and contact you within 24 hours.</p>
+                        <!-- 🔄 CHANGED: Updated button ID to be unique -->
+                        <button id="quote-confirm-btn" class="confirm-btn">
+                            <a href="request.html">OK!</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-------------- Footer ----------------->
+
+    <footer>
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <div class="footer-logo">A2Z Time Critical PTE LTD</div>
+            <p class="footer-text">
+              Your trusted logistics partner for international freight
+              forwarding, specializing in sea, land, and air shipping solutions
+            </p>
+            <div class="social-links">
+              <a href="#" class="social-link"
+                ><img src="assets/facebook.png" alt="Facebook"
+              /></a>
+              <a href="#" class="social-link"
+                ><img src="assets/linkedin.png" alt="Linkedin"
+              /></a>
+              <a href="#" class="social-link"
+                ><img src="assets/whatsapp.png" alt="Whatsapp"
+              /></a>
+              <a href="#" class="social-link"
+                ><img src="assets/instagram.png" alt="Instagram"
+              /></a>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="footer-title">Quick Links</h3>
+            <ul class="footer-links">
+              <li><a href="index.html">Home</a></li>
+              <li><a href="services.html">Services</a></li>
+              <li><a href="portfolio.html">Our Journey</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="#hero-contact">Request Quote</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer-title">Our Services</h3>
+            <ul class="footer-links">
+              <li><a href="services.html">Air Freight</a></li>
+              <li><a href="services.html">Sea Freight</a></li>
+              <li><a href="services.html">Land Freight</a></li>
+              <li><a href="services.html">Local Pickup / Delivery</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="footer-title">Contact Us</h3>
+            <ul class="footer-links">
+              <li>+65 88422422 / +65 96826846</li>
+              <li>ignatius.lim@a2zintl.com</li>
+              <li>azzumatbk@a2zintl.com</li>
+              <li>1 Tampines North Dr. 1 #08-11, Singapore 528559</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="copyright">
+          &copy; 2025 A2Z Time Critical PTE LTD, Singapore. All rights reserved.
+          
+        </div>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>
